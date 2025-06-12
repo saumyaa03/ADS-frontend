@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Home from "./Home";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
 
 const Navbar = ({ onSelectCategory, onSearch }) => {
   const getInitialTheme = () => {
@@ -25,9 +27,18 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="https://arianhealthcare.com/">
+            {/* <a className="navbar-brand" href="https://arianhealthcare.com/">
               ADS
-            </a>
+            </a> */}
+            <Link to="/" className="navbar-brand">
+              <span className="arian-logo">ARIAN</span>
+              <span className="arian-sub"> Lifestyle</span>
+            </Link>
+
+{/* <Route path="/" element={<h1>Home Works!</h1>} /> */}
+
+
+
             <button
               className="navbar-toggler"
               type="button"
