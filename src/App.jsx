@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import React from "react";
+import React, { useContext } from "react";
 import Home from "./screens/Home";
 import Navbar from "./components/Navbar/Navbar";
 import AddProduct from "./screens/AddProduct";
@@ -7,12 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { Context as AppContext } from "./contexts/AppContext";
 
 function App() {
+  const { theme } = useContext(AppContext); 
+
   return (
     <BrowserRouter>
-      <div className={`App arian-theme light-theme`}>
+      <div className={`App arian-theme ${theme}`}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

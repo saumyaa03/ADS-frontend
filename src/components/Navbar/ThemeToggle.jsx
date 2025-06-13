@@ -1,6 +1,10 @@
-import React from 'react'
+// src/components/Navbar/ThemeToggle.jsx
+import React, { useContext } from "react";
+import { Context as AppContext } from "../../contexts/AppContext";
 
-const ThemeToggle = ({ theme, toggleTheme }) => {
+function ThemeToggle() {
+  const { theme, toggleTheme } = useContext(AppContext);
+
   return (
     <button className="theme-btn" onClick={toggleTheme}>
       {theme === "dark-theme" ? (
@@ -10,6 +14,6 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
       )}
     </button>
   );
-};
+}
 
-export default ThemeToggle
+export default ThemeToggle;
