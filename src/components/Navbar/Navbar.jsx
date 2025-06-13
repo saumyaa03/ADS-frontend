@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import BrandLogo from "./BrandLogo";
 import ThemeToggle from "./ThemeToggle";
 import NavLinks from "./NavLinks";
+import '../../styles/components/navbar.css';
+import SearchBar from "./SearchBar";
 
 
 
@@ -71,12 +73,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                 </i>
                 {/* </a> */}
 
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
+                <SearchBar />
                 <div />
               </div>
             </div>
