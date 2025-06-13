@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import BrandLogo from "./BrandLogo";
 import ThemeToggle from "./ThemeToggle";
 import NavLinks from "./NavLinks";
 import '../../styles/components/navbar.css';
 import SearchBar from "./SearchBar";
-
-
+import { Context as AppContext } from "../../contexts/AppContext";
 
 const Navbar = ({ onSelectCategory, onSearch }) => {
   const getInitialTheme = () => {
@@ -16,6 +14,10 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
   };
 
   const [theme, setTheme] = useState(getInitialTheme());
+  const { token, setToken } = useContext(AppContext);
+  const navigate = useNavigate(); 
+
+  const isLoggedIn = !!token;
 
   const toggleTheme = () => {
     const newTheme = theme === "dark-theme" ? "light-theme" : "dark-theme";
@@ -23,11 +25,9 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
     localStorage.setItem("theme", newTheme);
   };
 
-  const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("token");
-
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setToken(null); // Clear context token
     navigate("/login");
   };
 
@@ -40,7 +40,6 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            
             <BrandLogo />
 
             <button
@@ -54,27 +53,17 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <NavLinks />
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <NavLinks isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
               <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
 
-
               <div className="d-flex align-items-center cart">
-                {/* <a href="/cart" className="nav-link text-dark"> */}
-                <i
-                  className="bi bi-cart me-2"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
+                <i className="bi bi-cart me-2" style={{ display: "flex", alignItems: "center" }}>
                   Cart
                 </i>
-                {/* </a> */}
-
                 <SearchBar />
-                <div />
               </div>
             </div>
           </div>
@@ -85,4 +74,3 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
 };
 
 export default Navbar;
-
