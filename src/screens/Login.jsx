@@ -3,14 +3,20 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthAPI } from "../axios";
 import { useNavigate } from "react-router-dom";
-
-
+import { useEffect } from "react";
 
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/"); // send user to home if already logged in
+        }
+      }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault(); // stop page refresh
