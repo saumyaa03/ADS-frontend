@@ -1,41 +1,36 @@
-import React, { useState } from "react";
-// import axios from "../axios"; // we'll update this later to handle token
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthAPI } from "../axios";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
+import { Context as AppContext } from "../contexts/AppContext";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    const { token, setToken } = useContext(AppContext); // access context
+
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if (token) {
-          navigate("/"); // send user to home if already logged in
+            navigate("/"); // Already logged in
         }
-      }, []);
+    }, [token]);
 
     const handleLogin = async (e) => {
-        e.preventDefault(); // stop page refresh
+        e.preventDefault();
 
         try {
             const response = await AuthAPI.post("/login", {
                 username,
                 password,
             });
-            
-
-            console.log(response.data);
 
             const token = response.data.token;
-            localStorage.setItem("token", token); // Save token in browser
+
+            setToken(token); // update token via context
+            localStorage.setItem("token", token); // optional: store persistently
 
             alert("Login successful!");
-
-            // Redirect to home
             navigate("/");
 
         } catch (err) {
@@ -66,11 +61,9 @@ function Login() {
                 <p style={{ marginTop: "1rem" }}>
                     Don’t have an account? <Link to="/register">Register</Link>
                 </p>
-
             </div>
         </div>
     );
-
 }
 
 export default Login;
