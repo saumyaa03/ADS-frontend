@@ -1,14 +1,12 @@
 import "./App.css";
 import React from "react";
-import Home from "./components/Home";
-import Navbar from "./components/Navbar";
-import AddProduct from "./components/AddProduct";
+import Home from "./screens/Home";
+import Navbar from "./components/Navbar/Navbar";
+import AddProduct from "./screens/AddProduct";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
 import PrivateRoute from "./components/PrivateRoute";
-
-
 
 
 function App() {
