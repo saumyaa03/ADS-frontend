@@ -20,21 +20,17 @@ function Products() {
     fetchData();
   }, []);
 
-  console.log("Products loaded:", products);
-
-
   return (
-    <div
-      className="pt-[80px] px-6 flex flex-wrap gap-4 justify-center"
-      style={{ maxWidth: "1200px", margin: "0 auto" }}
-    >
-         {products.map((product) => (
-            <MyProductCard key={product.id} product={product} />
-          ))}
-          
+    <div className="container pt-5">
+      <div className="row justify-content-center">
+        {products.map((product) => (
+          <div key={product.id} className="col-md-4 mb-4 d-flex align-items-stretch">
+            <MyProductCard product={product} />
+          </div>
+        ))}
+      </div>
     </div>
   );
-  
 }
 
 export default Products;

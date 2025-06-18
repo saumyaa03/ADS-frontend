@@ -1,5 +1,5 @@
 {
-  "name": "telusko-ecommerce-part-1",
+  "name": "arian-ecom-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -32,6 +32,6 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "sass": "^1.75.0",
     "tailwindcss": "^4.1.10",
-    "vite": "^5.2.0"
+    "vite": "^5.4.19"
   }
 }

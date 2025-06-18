@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => {
               marginBottom: "5px",
             }}
           >
-            ₹{product.price}
+            ${product.price}
           </h5>
         </div>
         <button
