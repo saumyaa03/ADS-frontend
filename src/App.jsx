@@ -8,6 +8,8 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import { Context as AppContext } from "./contexts/AppContext";
+import { ToastContainer } from "react-toastify";
+import Products from "./screens/Products";
 
 function App() {
   const { theme } = useContext(AppContext); 
@@ -28,9 +30,12 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products />} />
         </Routes>
+        <ToastContainer />
       </div>
     </BrowserRouter>
+    
   );
 }
 

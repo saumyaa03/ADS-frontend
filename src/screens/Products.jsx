@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import ProductCard from "../components/products/ProductCard";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import MyProductCard from '../components/temp/MyProductCard';
 
-const Home = () => {
+function Products() {
   const [products, setProducts] = useState([]);
   const [isError, setIsError] = useState(false);
 
@@ -20,23 +20,17 @@ const Home = () => {
     fetchData();
   }, []);
 
-  if (isError) {
-    return (
-      <h2 className="text-center" style={{ padding: "10rem" }}>
-        Something went wrong...
-      </h2>
-    );
-  }
-
   return (
-    <>
-      <div className="grid">
+    <div className="container pt-5">
+      <div className="row justify-content-center">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <div key={product.id} className="col-md-4 mb-4 d-flex align-items-stretch">
+            <MyProductCard product={product} />
+          </div>
         ))}
       </div>
-    </>
+    </div>
   );
-};
+}
 
-export default Home;
+export default Products;
